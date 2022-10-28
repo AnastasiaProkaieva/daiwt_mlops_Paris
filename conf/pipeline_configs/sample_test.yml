@@ -1,2 +1,2 @@
 output_format: 'delta'
-output_path: 'dbfs:/dbx/tmp/test/daiwt_mlops_paris'
+output_path: 'dbfs:/Shared/daiwt_mlops_paris/staging/dbx/tmp/test/daiwt_mlops_paris'
