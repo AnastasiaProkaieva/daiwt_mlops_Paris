@@ -1,0 +1,29 @@
+{
+    "environments": {
+        "dev": {
+            "profile": "daiwt-dev",
+            "workspace_dir": "/Shared/daiwt_mlops_paris/dev/dbx/daiwt_mlops_dev",
+            "artifact_location": "dbfs:/Shared/daiwt_mlops_paris/dev/dbx/projects/daiwt_mlops_dbx_dev"
+        },
+        "staging": {
+            "profile": "daiwt-staging",
+            "workspace_dir": "/Shared/daiwt_mlops_paris/staging/dbx/daiwt_mlops_staging",
+            "artifact_location": "dbfs:/Shared/daiwt_mlops_paris/staging/dbx/projects/daiwt_mlops_dbx_staging"
+        },
+        "prod": {
+            "profile": "daiwt-prod",
+            "workspace_dir": "/Shared/daiwt_mlops_paris/prod/dbx/daiwt_mlops_prod",
+            "artifact_location": "dbfs:/Shared/daiwt_mlops_paris/prod/dbx/projects/daiwt_mlops_dbx_prod"
+        },
+        "default": {
+            "profile": "DEFAULT",
+            "storage_type": "mlflow",
+            "properties": {
+                "workspace_directory": "/Shared/dbx/projects/daiwt-mlops-paris",
+                "artifact_location": "dbfs:/dbx/daiwt-mlops-paris"
+            }
+        }
+    },
+    "inplace_jinja_support": false,
+    "failsafe_cluster_reuse_with_assets": false
+}
