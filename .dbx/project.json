@@ -1,16 +1,16 @@
 {
     "environments": {
-        "dev-demo": {
+        "dev": {
             "profile": "daiwt-dev-demo",
             "workspace_dir": "/Shared/daiwt_mlops_paris/dev/dbx/daiwt_mlops_dev",
             "artifact_location": "dbfs:/Shared/daiwt_mlops_paris/dev/dbx/projects/daiwt_mlops_dbx_dev"
         },
-        "staging-demo": {
+        "staging": {
             "profile": "daiwt-staging-demo",
             "workspace_dir": "/Shared/daiwt_mlops_paris/staging/dbx/daiwt_mlops_staging",
             "artifact_location": "dbfs:/Shared/daiwt_mlops_paris/staging/dbx/projects/daiwt_mlops_dbx_staging"
         },
-        "prod-demo": {
+        "prod": {
             "profile": "daiwt-prod-demo",
             "workspace_dir": "/Shared/daiwt_mlops_paris/prod/dbx/daiwt_mlops_prod",
             "artifact_location": "dbfs:/Shared/daiwt_mlops_paris/prod/dbx/projects/daiwt_mlops_dbx_prod"
