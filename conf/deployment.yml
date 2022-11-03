@@ -182,7 +182,7 @@ environments:
         <<:
           - *prod-cluster-config
         git_source:
-          git_url: https://github.com/RafiKurlansik/daiwt-mlops.git
+          git_url: https://github.com/AnastasiaProkaieva/daiwt_mlops_Paris.git
           git_provider: "github"
           git_branch: "main"
         tasks:
