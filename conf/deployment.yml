@@ -170,14 +170,14 @@ environments:
           git_url: https://github.com/AnastasiaProkaieva/daiwt_mlops_Paris.git
           git_provider: "github"
           git_branch: "main"
-        tasks:
-          - task_key: 'model-train'
-            notebook_task:
-              notebook_path: 'notebooks/model_train'
-              base_parameters: {"env" : "prod"}
-              parameters: ['--base-data-params', 'file:fuse://conf/.base_data_params.env',
-                           '--env', 'file:fuse://conf/prod/.prod.env',
-                           '--conf-file', 'file:fuse://conf/pipeline_configs/model_train.yml']
+
+          notebook_task:
+            notebook_path: 'notebooks/model_train'
+            base_parameters: {"env" : "prod"}
+            parameters: ['--base-data-params', 'file:fuse://conf/.base_data_params.env',
+                         '--env', 'file:fuse://conf/prod/.prod.env',
+                         '--conf-file', 'file:fuse://conf/pipeline_configs/model_train.yml']
+
       - name: 'daiwt-PROD-telco-churn-model-deployment-Paris'
         <<:
           - *prod-cluster-config
@@ -185,13 +185,13 @@ environments:
           git_url: https://github.com/AnastasiaProkaieva/daiwt_mlops_Paris.git
           git_provider: "github"
           git_branch: "main"
-        tasks:
-          - task_key: 'model-deploy'
-            notebook_task:
-              notebook_path: 'notebooks/model_deployment'
-              parameters: ['--base-data-params', 'file:fuse://conf/.base_data_params.env',
-                           '--env', 'file:fuse://conf/prod/.prod.env',
-                           '--conf-file', 'file:fuse://conf/pipeline_configs/model_deployment.yml']
+
+          notebook_task:
+            notebook_path: 'notebooks/model_deployment'
+            parameters: ['--base-data-params', 'file:fuse://conf/.base_data_params.env',
+                         '--env', 'file:fuse://conf/prod/.prod.env',
+                         '--conf-file', 'file:fuse://conf/pipeline_configs/model_deployment.yml']
+
       - name: 'daiwt-PROD-telco-churn-model-inference-batch-Paris'
         <<:
           - *prod-cluster-config
@@ -199,10 +199,9 @@ environments:
           git_url: https://github.com/AnastasiaProkaieva/daiwt_mlops_Paris.git
           git_provider: "github"
           git_branch: "main"
-        tasks:
-          - task_key: 'model-inference-batch'
-            notebook_task:
-              notebook_path: 'notebooks/model_inference_batch'
-              parameters: ['--base-data-params', 'file:fuse://conf/.base_data_params.env',
-                           '--env', 'file:fuse://conf/prod/.prod.env',
-                           '--conf-file', 'file:fuse://conf/pipeline_configs/model_inference_batch.yml']
+
+          notebook_task:
+            notebook_path: 'notebooks/model_inference_batch'
+            parameters: ['--base-data-params', 'file:fuse://conf/.base_data_params.env',
+                         '--env', 'file:fuse://conf/prod/.prod.env',
+                         '--conf-file', 'file:fuse://conf/pipeline_configs/model_inference_batch.yml']
