@@ -30,7 +30,7 @@ This repo possesses the following pipelines:
 The following outlines the workflow to demo the repo.
 
 ### Set up
-1. Fork https://github.com/RafiKurlansik/daiwt-mlops
+1. Fork https://github.com/AnastasiaProkaieva/daiwt_mlops_Paris
 1. Configure [Databricks CLI connection profile](https://docs.databricks.com/dev-tools/cli/index.html#connection-profiles)
     - The project is designed to use 3 different Databricks CLI connection profiles: dev, staging and prod. 
       These profiles are set in [e2e-mlops/.dbx/project.json](https://github.com/niall-turbitt/e2e-mlops/blob/main/.dbx/project.json).
@@ -208,8 +208,8 @@ dbx execute --cluster-name=<name of interactive cluster> --job=<name of the job 
 
 For a test on an automated job cluster, deploy the job files and then launch:
 ```
-dbx deploy --jobs=<name of the job to test> --files-only
-dbx launch --job=<name of the job to test> --as-run-submit --trace
+dbx deploy --workflows=<name of the job to test> --files-only
+dbx launch <name of the job to test> --as-run-submit --trace
 ```
 
 Please note that for testing we recommend using [jobless deployments](https://dbx.readthedocs.io/en/latest/guidance/run_submit.html), so you won't affect existing job definitions.
