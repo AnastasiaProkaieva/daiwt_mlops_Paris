@@ -72,8 +72,8 @@ To start over or delete all of the resources in a given workspace, run the `demo
         1. Run the multitask `PROD-telco-churn-initial-model-train-register` job via an automated job cluster in the prod environment
            - **NOTE:** multitask jobs can only be run via `dbx deploy; dbx launch` currently).
            ```
-           dbx deploy --jobs=PROD-telco-churn-initial-model-train-register --environment=prod --files-only
-           dbx launch --job=PROD-telco-churn-initial-model-train-register --environment=prod --as-run-submit --trace
+           dbx deploy --workflows=PROD-telco-churn-initial-model-train-register -e prod
+           dbx launch PROD-telco-churn-initial-model-train-register -e prod 
            ```
            See the Limitations section below regarding running multitask jobs. In order to reduce cluster start up time
            you may want to consider using a [Databricks pool](https://docs.databricks.com/clusters/instance-pools/index.html), 
