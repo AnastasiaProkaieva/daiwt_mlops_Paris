@@ -33,10 +33,10 @@ The following outlines the workflow to demo the repo.
 1. Fork https://github.com/AnastasiaProkaieva/daiwt_mlops_Paris
 1. Configure [Databricks CLI connection profile](https://docs.databricks.com/dev-tools/cli/index.html#connection-profiles)
     - The project is designed to use 3 different Databricks CLI connection profiles: dev, staging and prod. 
-      These profiles are set in [e2e-mlops/.dbx/project.json](https://github.com/niall-turbitt/e2e-mlops/blob/main/.dbx/project.json).
+      These profiles are set in [e2e-mlops/.dbx/project.json](https://github.com/AnastasiaProkaieva/e2e-mlops-dais2022/blob/main/.dbx/project.json).
     - Note that for demo purposes we use the same connection profile for each of the 3 environments. 
       **In practice each profile would correspond to separate dev, staging and prod Databricks workspaces.**
-    - This [project.json](https://github.com/niall-turbitt/e2e-mlops/blob/main/.dbx/project.json) file will have to be 
+    - This [project.json]([https://github.com/AnastasiaProkaieva/e2e-mlops-dais2022](https://github.com/AnastasiaProkaieva/e2e-mlops-dais2022)/blob/main/.dbx/project.json) file will have to be 
       adjusted accordingly to the connection profiles a user has configured on their local machine.
 1. Configure Databricks secrets for GitHub Actions (ensure GitHub actions are enabled for you forked project, as the default is off in a forked repo).
     - Within the GitHub project navigate to Secrets under the project settings
@@ -53,7 +53,7 @@ The following outlines the workflow to demo the repo.
             - GitHub [personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
 
 #### Starting from scratch
-To start over or delete all of the resources in a given workspace, run the `demo-setup` pipeline.  As part of the `initial-model-train-register` multitask job, the first task `demo-setup` will delete any existing resources, as specified in [`demo_setup.yml`](https://github.com/niall-turbitt/e2e-mlops/blob/main/conf/job_configs/demo_setup.yml).
+To start over or delete all of the resources in a given workspace, run the `demo-setup` pipeline.  As part of the `initial-model-train-register` multitask job, the first task `demo-setup` will delete any existing resources, as specified in [`demo_setup.yml`](https://github.com/AnastasiaProkaieva/e2e-mlops-dais2022/blob/main/conf/job_configs/demo_setup.yml).
 
 ### Workflow
 
