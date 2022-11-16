@@ -5,7 +5,7 @@ This repo demonstrates an end-to-end MLOps workflow on Databricks that follows t
 
 The feature engineering, training, deployment and inference pipelines are deployed as a [Databricks Workflow](https://docs.databricks.com/data-engineering/jobs/jobs.html) using [`dbx`](https://dbx.readthedocs.io/en/latest/index.html) by Databricks Labs. GitHub Actions are used to orchestrate the movement of code from the development environment, to staging, and finally to production.  This project can be configured to use a single Databricks workspace for all three environments, or multiple workspaces.  
 
-This project can be run as a pure Python package, or as notebooks.  The current configuration is to deploy Databricks Workflows that run notebooks, but if you want to deploy Python wheels please see [Niall Turbitt's original repo](https://github.com/niall-turbitt/e2e-mlops).  If you are curious about the structure of the codebase, please watch the demo portion of the [recording from DAIS](https://www.youtube.com/watch?v=JApPzAnbfPI).
+This project can be run as a pure Python package, or as notebooks.  The current configuration is to deploy Databricks Workflows that run notebooks, but if you want to deploy Python wheels please see [DAIS2022 original repo](https://github.com/AnastasiaProkaieva/e2e-mlops-dais2022).  If you are curious about the structure of the codebase, please watch the demo portion of the [recording from DAIS2022](https://www.youtube.com/watch?v=JApPzAnbfPI).
 
 #### Preventing customer churn
 The business case at hand is a churn prediction problem. We use the [IBM Telco Customer Churn dataset](https://community.ibm.com/community/user/businessanalytics/blogs/steven-macko/2019/07/11/telco-customer-churn-1113) to build a simple classifier to predict whether a customer will churn from a fictional telecommunications company.
@@ -77,9 +77,9 @@ To start over or delete all of the resources in a given workspace, run the `demo
            ```
            See the Limitations section below regarding running multitask jobs. In order to reduce cluster start up time
            you may want to consider using a [Databricks pool](https://docs.databricks.com/clusters/instance-pools/index.html), 
-           and specify this pool ID in [`conf/deployment.yml`](https://github.com/niall-turbitt/e2e-mlops/blob/main/conf/deployment.yml).
+           and specify this pool ID in [`conf/deployment.yml`](https://github.com/AnastasiaProkaieva/e2e-mlops-dais2022/blob/main/conf/deployment.yml).
     - `PROD-telco-churn-initial-model-train-register` tasks:
-        1. Demo setup task steps ([`demo-setup`](https://github.com/niall-turbitt/e2e-mlops/blob/main/telco_churn/jobs/demo_setup_job.py))
+        1. Demo setup task steps ([`demo-setup`](https://github.com/AnastasiaProkaieva/e2e-mlops-dais2022/blob/main/telco_churn/jobs/demo_setup_job.py))
             1. Delete Model Registry model if exists (archive any existing models).
             1. Delete MLflow experiment if exists.
             1. Delete Feature Table if exists.
@@ -98,8 +98,8 @@ To start over or delete all of the resources in a given workspace, run the `demo
 
     - Create new “dev/new_model” branch 
         - `git checkout -b  dev/new_model`
-    - Make a change to the [`model_train.yml`](https://github.com/niall-turbitt/e2e-mlops/blob/main/conf/job_configs/model_train.yml) config file, updating `max_depth` under model_params from 4 to 8
-        - Optional: change run name under mlflow params in [`model_train.yml`](https://github.com/niall-turbitt/e2e-mlops/blob/main/conf/job_configs/model_train.yml) config file
+    - Make a change to the [`model_train.yml`](https://github.com/AnastasiaProkaieva/e2e-mlops-dais2022/blob/main/conf/job_configs/model_train.yml) config file, updating `max_depth` under model_params from 4 to 8
+        - Optional: change run name under mlflow params in [`model_train.yml`](https://github.com/AnastasiaProkaieva/e2e-mlops-dais2022/blob/main/conf/job_configs/model_train.yml) config file
     - Create pull request, to instantiate a request to merge the branch dev/new_model into main. 
 
 * On pull request the following steps are triggered in the GitHub Actions workflow:
@@ -117,7 +117,7 @@ To start over or delete all of the resources in a given workspace, run the `demo
     - Push tag
         - `git push origin <tag_name>`
 
-    - On pushing this the following steps are triggered in the [`onrelease.yml`](https://github.com/niall-turbitt/e2e-mlops/blob/main/.github/workflows/onrelease.yml) GitHub Actions workflow:
+    - On pushing this the following steps are triggered in the [`onrelease.yml`](https://github.com/AnastasiaProkaieva/e2e-mlops-dais2022/blob/main/.github/workflows/onrelease.yml) GitHub Actions workflow:
         1. Trigger unit tests.
         1. Deploy `PROD-telco-churn-model-train-deployment-inference-workflow` job to the prod environment.
         1. Launch `PROD-telco-churn-model-train-deployment-inference-workflow`
@@ -128,7 +128,7 @@ To start over or delete all of the resources in a given workspace, run the `demo
 4. **Inspect `PROD-telco-churn-model-train-deployment-inference-workflow` job in the prod environment**
     - In the Databricks workspace (prod environment) go to `Workflows` > `Jobs` to find it.
        
-    - Model train job steps (`telco-churn-model-train`)
+    - Model train workflow steps (`telco-churn-model-train`)
         1. Train improved “new” classifier (RandomForestClassifier - `max_depth=8`)
         1. Register the model. Model version 2 will be registered to stage=None upon successful model training.
         1. MLflow Model Registry automatic transition to stage='Staging'
@@ -141,7 +141,7 @@ At this point, there should now be two model versions registered in MLflow Model
 5. **Inspect the `model-deployment` task (Continuous Deployment) in the prod environment**
     - Model deployment task steps:
         1. Compare new “candidate model” in `stage='Staging'` versus current Production model in `stage='Production'`.
-        1. Comparison criteria set through [`model_deployment.yml`](https://github.com/niall-turbitt/e2e-mlops/blob/main/conf/job_configs/model_deployment.yml)
+        1. Comparison criteria set through [`model_deployment.yml`](https://github.com/AnastasiaProkaieva/e2e-mlops-dais2022/blob/main/conf/job_configs/model_deployment.yml)
             1. Compute predictions using both models against a specified reference dataset
             1. If Staging model performs better than Production model, promote Staging model to Production and archive existing Production model
             1. If Staging model performs worse than Production model, archive Staging model
@@ -156,7 +156,7 @@ At this point, there should now be two model versions registered in MLflow Model
         1. Write predictions to specified Delta path
 
 ## Limitations
-- Multitask jobs running against the same cluster
+- Multitask workflow running against the same cluster
     - The pipeline initial-model-train-register is a [multitask job](https://docs.databricks.com/data-engineering/jobs/index.html) which stitches together demo setup, feature store creation and model train pipelines. 
     - At present, each of these tasks within the multitask job is executed on a different automated job cluster, 
       rather than all tasks executed on the same cluster. As such, there will be time incurred for each task to acquire 
@@ -197,19 +197,19 @@ In the `tests/unit/conftest.py` you'll also find useful testing primitives, such
 There are two options for running integration tests:
 
 - On an interactive cluster via `dbx execute`
-- On a job cluster via `dbx launch`
+- On a workflow("job") cluster via `dbx launch`
 
-For quicker startup of the job clusters we recommend using instance pools ([AWS](https://docs.databricks.com/clusters/instance-pools/index.html), [Azure](https://docs.microsoft.com/en-us/azure/databricks/clusters/instance-pools/), [GCP](https://docs.gcp.databricks.com/clusters/instance-pools/index.html)).
+For quicker startup of the workflow("job") clusters we recommend using instance pools ([AWS](https://docs.databricks.com/clusters/instance-pools/index.html), [Azure](https://docs.microsoft.com/en-us/azure/databricks/clusters/instance-pools/), [GCP](https://docs.gcp.databricks.com/clusters/instance-pools/index.html)).
 
 For an integration test on interactive cluster, use the following command:
 ```
-dbx execute --cluster-name=<name of interactive cluster> --job=<name of the job to test>
+dbx execute --cluster-name=<name of interactive cluster> <name of the workflow to test>
 ```
 
 For a test on an automated job cluster, deploy the job files and then launch:
 ```
 dbx deploy --workflows=<name of the job to test> --files-only
-dbx launch <name of the job to test> --as-run-submit --trace
+dbx launch <name of the workflow to test> --from-assets --trace
 ```
 
 Please note that for testing we recommend using [jobless deployments](https://dbx.readthedocs.io/en/latest/guidance/run_submit.html), so you won't affect existing job definitions.
@@ -222,7 +222,7 @@ Please note that for testing we recommend using [jobless deployments](https://db
 ```bash
 dbx execute \
     --cluster-name="<some-cluster-name>" \
-    --job=job-name
+    workflow-name
 ```
 
 Multiple users also can use the same cluster for development. Libraries will be isolated per each execution context.
