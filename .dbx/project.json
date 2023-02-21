@@ -16,7 +16,7 @@
             "artifact_location": "dbfs:/Shared/daiwt_mlops_paris/prod/dbx/projects/daiwt_mlops_dbx_prod"
         },
         "default": {
-            "profile": "DEFAULT",
+            "profile": "daiwt-demo",
             "storage_type": "mlflow",
             "properties": {
                 "workspace_directory": "/Shared/dbx/projects/daiwt-mlops-paris",
