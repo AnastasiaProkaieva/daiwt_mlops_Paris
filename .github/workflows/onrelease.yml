@@ -8,11 +8,11 @@ on:
 jobs:
   release-pipeline:
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     strategy:
       max-parallel: 4
       matrix:
-        python-version: [ 3.9 ]
+        python-version: [ 3.9.5 ]
 
     env:
       DATABRICKS_HOST: ${{ secrets.DATABRICKS_PROD_HOST }}
